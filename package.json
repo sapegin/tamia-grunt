@@ -1,0 +1,56 @@
+{
+  "name": "tamia-grunt",
+  "version": "0.0.0",
+  "description": "Tâmia workflow for Grunt.",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "http://sapegin.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sapegin/tamia-grunt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sapegin/tamia-grunt/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/sapegin/tamia-grunt/blob/master/License.md"
+    }
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "modules",
+    "Readme.md",
+    "License.md"
+  ],
+  "scripts": {
+    "jshint": "jshint --reporter node_modules/jshint-stylish/stylish.js index.js",
+    "jscs": "jscs index.js",
+    "mocha": "mocha --reporter spec --compilers coffee:coffee-script/register",
+    "prepare": "cd test; npm install; bower install; grunt --verbose",
+    "test": "npm run jshint && npm run jscs && npm run prepare && npm run mocha"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "glob": "~4.0.2",
+    "lodash": "~2.4.1",
+    "copy-paste": "~0.2.2",
+    "load-grunt-tasks": "~0.4.0"
+  },
+  "devDependencies": {
+    "jshint-stylish": "~0.2.0",
+    "jshint": "~2.5.1",
+    "mocha": "~1.20.1",
+    "jscs": "~1.4.5",
+    "coffee-script": "~1.7.1",
+    "chai": "~1.9.1"
+  },
+  "keywords": [
+    "tamia"
+  ]
+}
