@@ -1,3 +1,9 @@
+/**
+ * Tâmia workflow for Grunt.
+ *
+ * @author Artem Sapegin (http://sapegin.me)
+ */
+
 module.exports = function(grunt, config) {
 	'use strict';
 
