@@ -23,6 +23,7 @@ module.exports = function(grunt) {
 			author: 'Artem Sapegin, http://sapegin.me'
 		},
 		concat: {
+			nonull: true,
 			main: {
 				src: [
 					'<%= bower_concat.main.dest %>',
