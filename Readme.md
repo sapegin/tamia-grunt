@@ -12,6 +12,11 @@ npm install --save-dev tamia-grunt
 ```
 
 
+### Notes
+
+The tamia-grunt will check all required Grunt plugins and ask you to install missed ones. It also will load all installed Grunt plugins via [load-grunt-tasks](https://github.com/sindresorhus/load-grunt-tasks).
+
+
 ## Example
 
 ```js
@@ -40,9 +45,35 @@ module.exports = function(grunt) {
 		// All other Grunt plugins
 	});
 
-	grunt.registerTask('default', ['stylus', 'scripts']);
+	grunt.registerTask('default', ['styles', 'scripts']);
 };
 ```
+
+
+## Modules
+
+### Styles
+
+Put your Stylus files into `styles` folder. `styles/index.styl` should exists. Then run `grunt styles`.
+
+Includes:
+
+	* [grunt-contrib-stylus](https://github.com/gruntjs/grunt-contrib-stylus).
+	* [stylobuild](https://github.com/kizu/stylobuild): [Autoprefixer](https://github.com/ai/autoprefixer) + [CSSO](https://github.com/css/csso) wrapper for Stylus.
+
+### Scripts
+
+Put your JavaScript files into `js` folder. `js/main.js` should exists. Add `concat` section to your Gruntfile as in an example above. Then run `grunt scripts`.
+
+Don’t forget to add `.jshintrc` to enable JSHint.
+
+Includes:
+
+	* [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint).
+	* [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat).
+	* [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify).
+	* [grunt-bower-concat](https://github.com/sapegin/grunt-bower-concat).
+	* [grunt-modernizr](https://github.com/Modernizr/grunt-modernizr).
 
 
 ## Changelog
