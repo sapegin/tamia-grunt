@@ -44,7 +44,7 @@ module.exports = function(grunt, util, config) {
 				options: {
 					atBegin: true
 				},
-				files: 'styles/**/*',
+				files: 'styles/**/*.styl',
 				tasks: ['stylus']
 			}
 		}
@@ -56,6 +56,8 @@ module.exports = function(grunt, util, config) {
 		'grunt-contrib-stylus'
 	]);
 	util.requireBanner();
+
+	grunt.registerTask('styles', ['stylus']);
 
 	return config;
 };
