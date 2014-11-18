@@ -10,7 +10,7 @@ module.exports = function(grunt, config) {
 	var path = require('path');
 	var glob = require('glob');
 	var _ = require('lodash');
-	var copy = require('copy-paste').silent().noConflict().copy;
+	var copy = require('copy-paste').copy;
 
 	var util = {
 		npmRequire: npmRequire,
