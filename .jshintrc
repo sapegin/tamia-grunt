@@ -9,7 +9,6 @@
 	"undef": true,
 	"trailing": true,
 	"esnext": true,
-	"camelcase": true,
 	"bitwise": true,
 	"noempty": true,
 	"unused": "vars",

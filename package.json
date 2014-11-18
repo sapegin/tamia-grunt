@@ -22,13 +22,13 @@
   "main": "index.js",
   "files": [
     "index.js",
-    "modules",
+    "modules/*.js",
     "Readme.md",
     "License.md"
   ],
   "scripts": {
-    "jshint": "jshint --reporter node_modules/jshint-stylish/stylish.js index.js",
-    "jscs": "jscs index.js",
+    "jshint": "jshint --reporter node_modules/jshint-stylish/stylish.js index.js modules/*.js",
+    "jscs": "jscs index.js modules/*.js",
     "mocha": "mocha --reporter spec --compilers coffee:coffee-script/register",
     "prepare": "cd test; npm install; bower install; grunt --verbose",
     "test": "npm run jshint && npm run jscs && npm run prepare && npm run mocha"

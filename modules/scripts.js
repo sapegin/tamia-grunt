@@ -1,3 +1,4 @@
+// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 module.exports = function(grunt, util, config) {
 	'use strict';
 

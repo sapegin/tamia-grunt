@@ -29,7 +29,7 @@ module.exports = function(grunt, util, config) {
 							},
 							csso: !debug,
 							pixrem: false
-						})
+						});
 					}
 				]
 			},
