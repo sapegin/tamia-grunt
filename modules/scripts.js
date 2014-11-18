@@ -70,6 +70,10 @@ module.exports = function(grunt, util, config) {
 				},
 				files: '<%= concat.main.src %>',
 				tasks: ['concat']
+			},
+			bower: {
+				files: 'bower.json',
+				tasks: ['bower_concat', 'concat']
 			}
 		}
 	};
