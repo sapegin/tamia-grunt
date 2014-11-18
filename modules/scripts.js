@@ -2,6 +2,8 @@
 module.exports = function(grunt, util, config) {
 	'use strict';
 
+	// @todo Run bower_concat if bower.json exists.
+
 	var _ = require('lodash');
 
 	if (!grunt.file.exists('js/main.js')) return config;
@@ -16,7 +18,7 @@ module.exports = function(grunt, util, config) {
 	var localConfig = {
 		jshint: {
 			options: {
-				jshintrc: '.jshintrc'  // @todo
+				jshintrc: true
 			},
 			files: [
 				'js/*.js',
