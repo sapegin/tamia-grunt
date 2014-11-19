@@ -16,5 +16,5 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['stylus', 'scripts']);
+	grunt.registerTask('default', ['stylus', 'scripts', 'images']);
 };

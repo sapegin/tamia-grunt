@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 		// All other Grunt plugins
 	});
 
-	grunt.registerTask('default', ['styles', 'scripts']);
+	grunt.registerTask('default', ['styles', 'scripts', 'images']);
 };
 ```
 
@@ -58,8 +58,8 @@ Put your Stylus files into `styles` folder. `styles/index.styl` should exists. T
 
 Includes:
 
-	* [grunt-contrib-stylus](https://github.com/gruntjs/grunt-contrib-stylus).
-	* [stylobuild](https://github.com/kizu/stylobuild): [Autoprefixer](https://github.com/ai/autoprefixer) + [CSSO](https://github.com/css/csso) wrapper for Stylus.
+* [grunt-contrib-stylus](https://github.com/gruntjs/grunt-contrib-stylus).
+* [stylobuild](https://github.com/kizu/stylobuild): [Autoprefixer](https://github.com/ai/autoprefixer) + [CSSO](https://github.com/css/csso) wrapper for Stylus.
 
 ### Scripts
 
@@ -69,11 +69,20 @@ Don’t forget to add `.jshintrc` to enable JSHint.
 
 Includes:
 
-	* [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint).
-	* [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat).
-	* [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify).
-	* [grunt-bower-concat](https://github.com/sapegin/grunt-bower-concat).
-	* [grunt-modernizr](https://github.com/Modernizr/grunt-modernizr).
+* [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint).
+* [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat).
+* [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify).
+* [grunt-bower-concat](https://github.com/sapegin/grunt-bower-concat).
+* [grunt-modernizr](https://github.com/Modernizr/grunt-modernizr).
+
+### Images
+
+Put your images into `images_src` folder. Then run `grunt images`.
+
+Includes:
+
+* [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin).
+* [grunt-svgmin](https://github.com/sindresorhus/grunt-svgmin).
 
 
 ## Changelog

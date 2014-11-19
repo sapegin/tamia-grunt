@@ -1,3 +1,10 @@
+/**
+ * Tâmia workflow for Grunt.
+ * CSS stuff: Stylus, Autoprefixer, CSSO.
+ *
+ * @author Artem Sapegin (http://sapegin.me)
+ */
+
 module.exports = function(grunt, util, config) {
 	'use strict';
 

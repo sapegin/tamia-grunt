@@ -1,3 +1,10 @@
+/**
+ * Tâmia workflow for Grunt.
+ * JavaScript stuff: concatenation, minification, linting. Plus Bower concatenation and Modernizr custom build.
+ *
+ * @author Artem Sapegin (http://sapegin.me)
+ */
+
 // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 module.exports = function(grunt, util, config) {
 	'use strict';
