@@ -83,6 +83,7 @@ Includes:
 
 * [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin).
 * [grunt-svgmin](https://github.com/sindresorhus/grunt-svgmin).
+* [grunt-newer](https://github.com/tschaub/grunt-newer).
 
 
 ## Changelog

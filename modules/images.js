@@ -29,12 +29,12 @@ module.exports = function(grunt, util, config) {
 			}
 		}
 	};
-	var deps = [];
+	var deps = ['grunt-newer'];
 	var tasks = [];
 
 	if (images) {
 		deps.push('grunt-contrib-imagemin');
-		tasks.push('imagemin');
+		tasks.push('newer:imagemin');
 		localConfig.imagemin = {
 			options: {
 				pngquant: true
@@ -54,7 +54,7 @@ module.exports = function(grunt, util, config) {
 
 	if (svgs) {
 		deps.push('grunt-svgmin');
-		tasks.push('svgmin');
+		tasks.push('newer:svgmin');
 		localConfig.svgmin = {
 			images: {
 				files: [

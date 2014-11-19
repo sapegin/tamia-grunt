@@ -11,6 +11,7 @@
     "grunt-contrib-stylus": "~0.17.0",
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-modernizr": "~0.5.2",
+    "grunt-newer": "~0.8.0",
     "grunt-svgmin": "~2.0.0",
     "stylobuild": "~0.4.3"
   }
