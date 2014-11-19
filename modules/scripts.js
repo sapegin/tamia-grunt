@@ -9,8 +9,6 @@
 module.exports = function(grunt, util, config) {
 	'use strict';
 
-	// @todo Run bower_concat if bower.json exists.
-
 	var _ = require('lodash');
 
 	if (!grunt.file.exists('js/main.js')) return config;
@@ -31,15 +29,6 @@ module.exports = function(grunt, util, config) {
 				'js/*.js',
 				'js/components/*.js'
 			]
-		},
-		bower_concat: {
-			main: {
-				dest: 'build/_bower.js',
-				exclude: [
-					'jquery',
-					'modernizr'
-				]
-			}
 		},
 		uglify: {
 			options: {
@@ -80,26 +69,43 @@ module.exports = function(grunt, util, config) {
 				},
 				files: '<%= concat.main.src %>',
 				tasks: ['concat']
-			},
-			bower: {
-				files: 'bower.json',
-				tasks: ['bower_concat', 'concat']
 			}
 		}
 	};
 
-	config = _.merge(localConfig, config);
-
-	util.npmDependencies([
+	var deps = [
 		'grunt-contrib-jshint',
-		'grunt-bower-concat',
 		'grunt-contrib-concat',
 		'grunt-contrib-uglify',
 		'grunt-modernizr'
-	]);
+	];
+
+	var tasks = ['jshint', 'concat', 'uglify', 'modernizr'];
+
+	if (grunt.file.exists('bower.json')) {
+		localConfig.bower_concat = {
+			main: {
+				dest: 'build/_bower.js',
+				exclude: [
+					'jquery',
+					'modernizr'
+				]
+			}
+		};
+		localConfig.watch.bower = {
+			files: 'bower.json',
+			tasks: ['bower_concat', 'concat']
+		};
+		deps.push('grunt-bower-concat');
+		tasks.splice(tasks.indexOf('jshint') + 1, 0, 'bower_concat');
+	}
+
+	config = _.merge(localConfig, config);
+
+	util.npmDependencies(deps);
 	util.requireBanner();
 
-	grunt.registerTask('scripts', ['jshint', 'bower_concat', 'concat', 'uglify', 'modernizr']);
+	grunt.registerTask('scripts', tasks);
 
 	return config;
 };
