@@ -41,9 +41,7 @@ module.exports = function(grunt, util, config) {
 				]
 			},
 			compile: {
-				files: {
-					'build/styles.css': 'styles/index.styl'
-				}
+				files: {}
 			}
 		},
 		watch: {
@@ -56,6 +54,9 @@ module.exports = function(grunt, util, config) {
 			}
 		}
 	};
+
+	var isWordpressTheme = grunt.file.exists('header.php') && grunt.file.exists('functions.php');
+	localConfig.stylus.compile.files[isWordpressTheme ? 'styles.css' : 'build/styles.css'] = 'styles/index.styl';
 
 	config = _.merge(localConfig, config);
 
