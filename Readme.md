@@ -85,6 +85,9 @@ Includes:
 * [grunt-svgmin](https://github.com/sindresorhus/grunt-svgmin).
 * [grunt-newer](https://github.com/tschaub/grunt-newer).
 
+### Doctor
+
+Checks project configuration: required dependencies (more later). Run `grunt doctor`.
 
 ## Changelog
 
