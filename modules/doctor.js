@@ -27,33 +27,60 @@ module.exports = function(grunt, util, config) {
 	var chalk = require('chalk');
 	var compareVersion = require('compare-version');
 
+	var allOk = true;
+
 	var localConfig = {
 		doctor: {}
 	};
 	config = _.merge(localConfig, config);
 
 	grunt.registerTask('doctor', 'Check project configuration: npm modules versions, etc.', function() {
+		grunt.log.subhead('Checking package.json...');
+		var packageJsonPath = findPackageJson();
+		if (packageJsonPath) {
+			ok('package.json found');
+		}
+		else {
+			notOk('package.json not found');
+		}
+
 		grunt.log.subhead('Checking npm dependencies...');
-		var packageDir = path.dirname(findPackageJson());
+		var packageDir = path.dirname(packageJsonPath);
 		var devDependencies = readPackageJson().devDependencies;
 		_.each(requirements, function(version, name) {
 			if (!devDependencies[name]) return;
-			var installedVersion = readPackageJson(path.join(packageDir, 'node_modules', name)).version;
+			var printName = chalk.white(name);
+			var packageJson = readPackageJson(path.join(packageDir, 'node_modules', name), false);
+			var installedVersion = packageJson.version;
 			if (compareVersion(installedVersion, version) !== -1) {
-				grunt.log.writeln(chalk.green('✔ ') + chalk.white(name) + ' ' + installedVersion);
+				ok(printName + ' ' + installedVersion);
 			}
 			else {
-				grunt.log.writeln(chalk.red('✘ ') + chalk.white(name) + ' ' + version + ' is required, installed ' + installedVersion);
+				notOk(printName + ' ' + version + ' is required, installed ' + installedVersion);
 			}
 		});
+
+		if (!allOk) {
+			grunt.log.writeln();
+			grunt.fail.fatal('Not OK ಠ_ಠ');
+		}
 	});
 
-	function readPackageJson(dir) {
-		var packageJson = findPackageJson(dir);
-		return require(packageJson);
+	function ok(message) {
+		grunt.log.writeln(chalk.green('✔ ') + message);
 	}
 
-	function findPackageJson(dir) {
+	function notOk(message) {
+		allOk = false;
+		grunt.log.writeln(chalk.red('✘ ') + message);
+	}
+
+	function readPackageJson(dir, recursive) {
+		var packageJson = findPackageJson(dir, recursive);
+		return packageJson ? require(packageJson) : null;
+	}
+
+	function findPackageJson(dir, recursive) {
 		if (dir === undefined) dir = process.cwd();
 		var filename = 'package.json';
 		var filepath = path.join(dir, filename);
@@ -61,8 +88,8 @@ module.exports = function(grunt, util, config) {
 			return filepath;
 		}
 
-		if (dir === '/') {
-			throw new Error('Could not find package.json.');
+		if (recursive === false || dir === '/') {
+			return null;
 		}
 
 		return findPackageJson(path.dirname(dir));
