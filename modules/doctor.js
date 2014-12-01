@@ -92,7 +92,7 @@ module.exports = function(grunt, util, config) {
 			return null;
 		}
 
-		return findPackageJson(path.dirname(dir));
+		return findPackageJson(path.dirname(dir), recursive);
 	}
 
 	return config;
