@@ -16,6 +16,17 @@ module.exports = function(grunt, util, config) {
 
 	var debug = !!grunt.option('debug');
 
+	var stylobuildConfig = {
+		autoprefixer: {
+			browsers: 'last 2 versions, ie 8, ie 9'
+		},
+		minifier: 'cleancss',
+		pixrem: false
+	};
+	if (debug) {
+		stylobuildConfig.cleancss = false;
+	}
+
 	var localConfig = {
 		stylus: {
 			options: {
@@ -30,13 +41,7 @@ module.exports = function(grunt, util, config) {
 				],
 				use: [
 					function() {
-						return stylobuild({
-							autoprefixer: {
-								browsers: 'last 2 versions, ie 8, ie 9'
-							},
-							csso: !debug,
-							pixrem: false
-						});
+						return stylobuild(stylobuildConfig);
 					}
 				]
 			},
