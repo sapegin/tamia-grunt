@@ -32,7 +32,7 @@
     "mocha": "mocha --reporter spec --compilers coffee:coffee-script/register",
     "prepare": "cd test; npm install; bower install; grunt --verbose",
     "test": "npm run jshint && npm run jscs && npm run prepare && npm run mocha",
-    "postinstall": "cd ../.. && test -f Gruntfile.js && grunt doctor"
+    "postinstall": "cd ../.. && test -f Gruntfile.js && grunt doctor || true"
   },
   "engines": {
     "node": ">=0.10.0"
