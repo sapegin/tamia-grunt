@@ -1,3 +1,7 @@
+### 2014-12-16 v0.1.1
+
+* Do not stop installation on npm postinstall.
+
 ### 2014-12-03 v0.1.0
 
 * New modules: doctor, images.
