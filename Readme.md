@@ -59,7 +59,7 @@ Put your Stylus files into `styles` folder. `styles/index.styl` should exists. T
 Includes:
 
 * [grunt-contrib-stylus](https://github.com/gruntjs/grunt-contrib-stylus).
-* [stylobuild](https://github.com/kizu/stylobuild): [Autoprefixer](https://github.com/ai/autoprefixer) + [CSSO](https://github.com/css/csso) wrapper for Stylus.
+* [stylobuild](https://github.com/kizu/stylobuild): [Autoprefixer](https://github.com/ai/autoprefixer) + [CleanCSS](https://github.com/jakubpawlowicz/clean-css) wrapper for Stylus.
 
 ### Scripts
 
