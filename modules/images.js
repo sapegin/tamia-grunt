@@ -13,8 +13,8 @@ module.exports = function(grunt, util, config) {
 
 	var imagesDir = 'images_src';
 
-	var images = !!glob.sync(imagesDir + '/*.{png,jpg,gif}');
-	var svgs = !!glob.sync(imagesDir + '/*.svg');
+	var images = !!glob.sync(imagesDir + '/*.{png,jpg,gif}').length;
+	var svgs = !!glob.sync(imagesDir + '/*.svg').length;
 
 	if (!images && !svgs) return config;
 
