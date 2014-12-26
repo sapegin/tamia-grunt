@@ -1,3 +1,8 @@
+### 2014-12-26 v0.1.2
+
+* CSSO → CleanCSS.
+* Fix images module check (do not require to install image optimizers when there’s no images).
+
 ### 2014-12-16 v0.1.1
 
 * Do not stop installation on npm postinstall.
