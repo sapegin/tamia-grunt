@@ -28,8 +28,8 @@ module.exports = function(grunt) {
 			author: 'Artem Sapegin, http://sapegin.me'
 		},
 		concat: {
-			nonull: true,
 			main: {
+				nonull: true,
 				src: [
 					'<%= bower_concat.main.dest %>',
 					'tamia/vendor/*.js',
