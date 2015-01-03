@@ -10,7 +10,7 @@ module.exports = function(grunt, util, config) {
 
 	var _ = require('lodash');
 
-	if (!grunt.file.exists('styles/index.styl')) return config;
+	if (!util.hasStyles()) return config;
 
 	var stylobuild = util.npmRequire('stylobuild');
 
@@ -70,7 +70,9 @@ module.exports = function(grunt, util, config) {
 	]);
 	util.requireBanner();
 
-	grunt.registerTask('styles', ['stylus']);
+	var tasks = ['stylus'];
+	tasks = util.appendModernizr(tasks);
+	grunt.registerTask('styles', tasks);
 
 	return config;
 };

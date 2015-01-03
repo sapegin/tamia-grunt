@@ -1,6 +1,6 @@
 /**
  * Tâmia workflow for Grunt.
- * JavaScript stuff: concatenation, minification, linting. Plus Bower concatenation and Modernizr custom build.
+ * JavaScript stuff: concatenation, minification, linting. Plus Bower concatenation.
  *
  * @author Artem Sapegin (http://sapegin.me)
  */
@@ -11,7 +11,7 @@ module.exports = function(grunt, util, config) {
 
 	var _ = require('lodash');
 
-	if (!grunt.file.exists('js/main.js')) return config;
+	if (!util.hasScripts()) return config;
 
 	if (!config.concat) {
 		grunt.fail.fatal('Gruntfile should contain "concat" section.');
@@ -47,21 +47,6 @@ module.exports = function(grunt, util, config) {
 				}
 			}
 		},
-		modernizr: {
-			main: {
-				devFile: 'remote',
-				outputFile: 'build/modernizr.js',
-				extra: {
-					load: false
-				},
-				files: {
-					src: [
-						'build/scripts.js',
-						'build/styles.css'
-					]
-				}
-			}
-		},
 		watch: {
 			concat: {
 				options: {
@@ -76,11 +61,10 @@ module.exports = function(grunt, util, config) {
 	var deps = [
 		'grunt-contrib-jshint',
 		'grunt-contrib-concat',
-		'grunt-contrib-uglify',
-		'grunt-modernizr'
+		'grunt-contrib-uglify'
 	];
 
-	var tasks = ['jshint', 'concat', 'uglify', 'modernizr'];
+	var tasks = ['jshint', 'concat', 'uglify'];
 
 	if (grunt.file.exists('bower.json')) {
 		localConfig.bower_concat = {
@@ -104,6 +88,8 @@ module.exports = function(grunt, util, config) {
 
 	util.npmDependencies(deps);
 	util.requireBanner();
+
+	tasks = util.appendModernizr(tasks);
 
 	grunt.registerTask('scripts', tasks);
 
