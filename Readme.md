@@ -73,7 +73,6 @@ Includes:
 * [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat).
 * [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify).
 * [grunt-bower-concat](https://github.com/sapegin/grunt-bower-concat).
-* [grunt-modernizr](https://github.com/Modernizr/grunt-modernizr).
 
 ### Images
 
@@ -84,6 +83,14 @@ Includes:
 * [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin).
 * [grunt-svgmin](https://github.com/sindresorhus/grunt-svgmin).
 * [grunt-newer](https://github.com/tschaub/grunt-newer).
+
+### Modernizr
+
+Custom Modernizr build. Will run automatically for either `styles` or `scripts` tasks.
+
+Includes:
+
+* [grunt-modernizr](https://github.com/Modernizr/grunt-modernizr).
 
 ### Doctor
 
