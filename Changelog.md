@@ -1,3 +1,7 @@
+### 2015-01-03 v0.1.3
+
+* Move Modernizr custom build to a separate module. Will run automatically for either styles or scripts tasks.
+
 ### 2014-12-26 v0.1.2
 
 * CSSO → CleanCSS.
