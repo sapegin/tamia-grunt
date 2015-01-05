@@ -48,10 +48,6 @@ module.exports = function(grunt, config) {
 		});
 	};
 
-	util.requireBanner = function() {
-		config.banner = '/*! Author: <%= tamia.author %>, <%= grunt.template.today("yyyy") %> */\n';
-	};
-
 	/**
 	 * Project has scripts.
 	 *
@@ -90,6 +86,9 @@ module.exports = function(grunt, config) {
 	}
 
 	function main() {
+		// Banner
+		config.banner = '/*! Author: <%= tamia.author %>, <%= grunt.template.today("yyyy") %> */\n';
+
 		// Modules
 		modules = glob.sync(__dirname + '/modules/*.js');
 		modules.forEach(function(module) {
@@ -124,4 +123,3 @@ module.exports = function(grunt, config) {
 	main();
 
 };
-

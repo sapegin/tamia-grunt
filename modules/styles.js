@@ -68,7 +68,6 @@ module.exports = function(grunt, util, config) {
 	util.npmDependencies([
 		'grunt-contrib-stylus'
 	]);
-	util.requireBanner();
 
 	var tasks = ['stylus'];
 	tasks = util.appendModernizr(tasks);

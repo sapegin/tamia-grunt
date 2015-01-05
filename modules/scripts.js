@@ -87,7 +87,6 @@ module.exports = function(grunt, util, config) {
 	config = _.merge(localConfig, config);
 
 	util.npmDependencies(deps);
-	util.requireBanner();
 
 	tasks = util.appendModernizr(tasks);
 
