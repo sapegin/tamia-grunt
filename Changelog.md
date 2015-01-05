@@ -1,3 +1,7 @@
+### 2015-01-05 v0.1.4
+
+* Fix banners.
+
 ### 2015-01-03 v0.1.3
 
 * Move Modernizr custom build to a separate module. Will run automatically for either styles or scripts tasks.
