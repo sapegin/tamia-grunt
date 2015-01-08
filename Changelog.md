@@ -1,3 +1,7 @@
+### 2015-01-08 v0.1.5
+
+* Scripts: source maps.
+
 ### 2015-01-05 v0.1.4
 
 * Fix banners.
