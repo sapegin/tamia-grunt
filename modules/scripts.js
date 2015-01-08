@@ -21,6 +21,11 @@ module.exports = function(grunt, util, config) {
 	var debug = !!grunt.option('debug');
 
 	var localConfig = {
+		concat: {
+			options: {
+				sourceMap: debug
+			}
+		},
 		jshint: {
 			options: {
 				jshintrc: true

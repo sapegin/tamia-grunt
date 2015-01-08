@@ -10,7 +10,7 @@ module.exports = function(grunt, util, config) {
 
 	var requirements = {
 		'grunt': '0.4.0',
-		'grunt-contrib-concat': '0.4.0',
+		'grunt-contrib-concat': '0.5.0',  // Source maps support
 		'grunt-contrib-imagemin': '0.9.0',
 		'grunt-contrib-jshint': '0.10.0',
 		'grunt-contrib-stylus': '0.17.0',
