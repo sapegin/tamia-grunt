@@ -30,8 +30,9 @@
     "jshint": "jshint --reporter node_modules/jshint-stylish/stylish.js index.js modules/*.js",
     "jscs": "jscs index.js modules/*.js",
     "mocha": "mocha --reporter spec --compilers coffee:coffee-script/register",
+    "clean": "rm -rf test/build; rm -rf test/images",
     "prepare": "cd test; npm install; bower install; grunt --verbose",
-    "test": "npm run jshint && npm run jscs && npm run prepare && npm run mocha",
+    "test": "npm run jshint && npm run jscs && npm run clean && npm run prepare && npm run mocha",
     "postinstall": "cd ../.. && test -f Gruntfile.js && grunt doctor || true"
   },
   "engines": {

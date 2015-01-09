@@ -89,7 +89,10 @@ module.exports = function(grunt, config) {
 	 * @return {String}
 	 */
 	util.globMask = function(exts, dir) {
-		var mask = '*.{' + exts + '}';
+		if (exts.indexOf(',') !== -1) {
+			exts = '{' + exts + '}';
+		}
+		var mask = '*.' + exts;
 		if (dir) {
 			return path.join(dir, mask);
 		}

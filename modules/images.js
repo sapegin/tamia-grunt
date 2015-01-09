@@ -16,7 +16,7 @@ module.exports = function(grunt, util, config) {
 	var svgExts = 'svg';
 
 	var images = !!glob.sync(util.globMask(imagesExts, imagesDir)).length;
-	var svgs = !!glob.sync(util.globMask(imagesExts, svgExts)).length;
+	var svgs = !!glob.sync(util.globMask(svgExts, imagesDir)).length;
 
 	if (!images && !svgs) return config;
 
