@@ -13,7 +13,7 @@ module.exports = function(grunt, util, config) {
 
 	var imagesDir = 'images_src';
 
-	var images = !!glob.sync(imagesDir + '/*.{png,jpg,gif}').length;
+	var images = !!glob.sync(imagesDir + '/*.{png,jpg,jpeg,gif}').length;
 	var svgs = !!glob.sync(imagesDir + '/*.svg').length;
 
 	if (!images && !svgs) return config;
@@ -24,7 +24,7 @@ module.exports = function(grunt, util, config) {
 				options: {
 					atBegin: true
 				},
-				files: imagesDir + '/*.{png,jpg,gif,svg}',
+				files: imagesDir + '/*.{png,jpg,jpeg,gif,svg}',
 				tasks: ['images']
 			}
 		}
@@ -44,7 +44,7 @@ module.exports = function(grunt, util, config) {
 					{
 						expand: true,
 						cwd: imagesDir,
-						src: '*.{png,jpg,gif}',
+						src: '*.{png,jpg,jpeg,gif}',
 						dest: 'images'
 					}
 				]
