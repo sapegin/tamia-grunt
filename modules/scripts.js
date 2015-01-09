@@ -13,10 +13,7 @@ module.exports = function(grunt, util, config) {
 
 	if (!util.hasScripts()) return config;
 
-	if (!config.concat) {
-		grunt.fail.fatal('Gruntfile should contain "concat" section.');
-		return;
-	}
+	util.requireConfig('concat');
 
 	var debug = !!grunt.option('debug');
 

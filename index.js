@@ -48,6 +48,19 @@ module.exports = function(grunt, config) {
 		});
 	};
 
+	util.requireConfig = function(configPath) {
+		var parts = configPath.split('.');
+		var current = config;
+		_.each(parts, function(part) {
+			if (!(part in current)) {
+				grunt.fail.fatal('Gruntfile should contain "' + configPath + '".');
+				return false;
+			}
+			current = current[part];
+		});
+		return true;
+	};
+
 	/**
 	 * Project has scripts.
 	 *
@@ -107,6 +120,7 @@ module.exports = function(grunt, config) {
 
 	function main() {
 		// Banner
+		util.requireConfig('tamia.author');
 		config.banner = '/*! Author: <%= tamia.author %>, <%= grunt.template.today("yyyy") %> */\n';
 
 		// Modules
