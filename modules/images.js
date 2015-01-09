@@ -12,9 +12,11 @@ module.exports = function(grunt, util, config) {
 	var _ = require('lodash');
 
 	var imagesDir = 'images_src';
+	var imagesExts = 'png,jpg,jpeg,gif';
+	var svgExts = 'svg';
 
-	var images = !!glob.sync(imagesDir + '/*.{png,jpg,jpeg,gif}').length;
-	var svgs = !!glob.sync(imagesDir + '/*.svg').length;
+	var images = !!glob.sync(util.globMask(imagesExts, imagesDir)).length;
+	var svgs = !!glob.sync(util.globMask(imagesExts, svgExts)).length;
 
 	if (!images && !svgs) return config;
 
@@ -24,7 +26,7 @@ module.exports = function(grunt, util, config) {
 				options: {
 					atBegin: true
 				},
-				files: imagesDir + '/*.{png,jpg,jpeg,gif,svg}',
+				files: util.globMask(imagesExts + svgExts, imagesDir),
 				tasks: ['images']
 			}
 		}
@@ -44,7 +46,7 @@ module.exports = function(grunt, util, config) {
 					{
 						expand: true,
 						cwd: imagesDir,
-						src: '*.{png,jpg,jpeg,gif}',
+						src: util.globMask(imagesExts),
 						dest: 'images'
 					}
 				]
@@ -61,7 +63,7 @@ module.exports = function(grunt, util, config) {
 					{
 						expand: true,
 						cwd: imagesDir,
-						src: '*.svg',
+						src: util.globMask(svgExts),
 						dest: 'images'
 					}
 				]

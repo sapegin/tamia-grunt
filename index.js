@@ -81,6 +81,23 @@ module.exports = function(grunt, config) {
 		return tasks;
 	};
 
+	/**
+	 * Returns glob mask for specified file extensions.
+	 *
+	 * @param {String} exts Extensions (`jpg,png`).
+	 * @param {String} [dir] Directory.
+	 * @return {String}
+	 */
+	util.globMask = function(exts, dir) {
+		var mask = '*.{' + exts + '}';
+		if (dir) {
+			return path.join(dir, mask);
+		}
+		else {
+			return mask;
+		}
+	};
+
 	function npmModulePath(module) {
 		return path.join(process.cwd(), 'node_modules', module);
 	}
