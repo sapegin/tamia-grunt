@@ -8,9 +8,13 @@
 module.exports = function(grunt, util, config) {
 	'use strict';
 
+	var path = require('path');
 	var _ = require('lodash');
 
 	if (!util.hasStyles()) return config;
+
+	var srcDir = util.srcDir('stylesSrc', 'styles');
+	var destDir = util.destDir('stylesDest', 'build');
 
 	var stylobuild = util.npmRequire('stylobuild');
 
@@ -54,14 +58,15 @@ module.exports = function(grunt, util, config) {
 				options: {
 					atBegin: true
 				},
-				files: 'styles/**/*.styl',
+				files: path.join(srcDir, '**/*.styl'),
 				tasks: ['stylus']
 			}
 		}
 	};
 
 	var isWordpressTheme = grunt.file.exists('header.php') && grunt.file.exists('functions.php');
-	localConfig.stylus.compile.files[isWordpressTheme ? 'styles.css' : 'build/styles.css'] = 'styles/index.styl';
+	var dest = isWordpressTheme ? 'styles.css' : path.join(destDir, 'styles.css');
+	localConfig.stylus.compile.files[dest] = path.join(srcDir, 'index.styl');
 
 	config = _.merge(localConfig, config);
 

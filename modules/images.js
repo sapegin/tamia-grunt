@@ -11,12 +11,13 @@ module.exports = function(grunt, util, config) {
 	var glob = require('glob');
 	var _ = require('lodash');
 
-	var imagesDir = 'images_src';
+	var srcDir = util.srcDir('imagesSrc', 'images_src');
+	var destDir = util.destDir('imagesDest', 'images');
 	var imagesExts = 'png,jpg,jpeg,gif';
 	var svgExts = 'svg';
 
-	var images = !!glob.sync(util.globMask(imagesExts, imagesDir)).length;
-	var svgs = !!glob.sync(util.globMask(svgExts, imagesDir)).length;
+	var images = !!glob.sync(util.globMask(imagesExts, srcDir)).length;
+	var svgs = !!glob.sync(util.globMask(svgExts, srcDir)).length;
 
 	if (!images && !svgs) return config;
 
@@ -26,7 +27,7 @@ module.exports = function(grunt, util, config) {
 				options: {
 					atBegin: true
 				},
-				files: util.globMask(imagesExts + svgExts, imagesDir),
+				files: util.globMask(imagesExts + svgExts, srcDir),
 				tasks: ['images']
 			}
 		}
@@ -45,9 +46,9 @@ module.exports = function(grunt, util, config) {
 				files: [
 					{
 						expand: true,
-						cwd: imagesDir,
+						cwd: srcDir,
 						src: util.globMask(imagesExts),
-						dest: 'images'
+						dest: destDir
 					}
 				]
 			}
@@ -62,9 +63,9 @@ module.exports = function(grunt, util, config) {
 				files: [
 					{
 						expand: true,
-						cwd: imagesDir,
+						cwd: srcDir,
 						src: util.globMask(svgExts),
-						dest: 'images'
+						dest: destDir
 					}
 				]
 			}

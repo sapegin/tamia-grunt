@@ -49,12 +49,30 @@ module.exports = function(grunt) {
 };
 ```
 
+Config:
+
+```json
+tamia: {
+	author: 'Artem Sapegin, http://sapegin.me',  // Required
+	src: '',  // Optional
+	dest: ''  // Optional
+}
+```
 
 ## Modules
 
 ### Styles
 
 Put your Stylus files into `styles` folder. `styles/index.styl` should exists. Then run `grunt styles`.
+
+Config:
+
+```json
+tamia: {
+	stylesSrc: '',  // Optional
+	stylesDest: ''  // Optional
+}
+```
 
 Includes:
 
@@ -67,6 +85,15 @@ Put your JavaScript files into `js` folder. `js/main.js` should exists. Add `con
 
 Don’t forget to add `.jshintrc` to enable JSHint.
 
+Config:
+
+```json
+tamia: {
+	scriptsSrc: '',  // Optional
+	scriptsDest: ''  // Optional
+}
+```
+
 Includes:
 
 * [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint).
@@ -77,6 +104,15 @@ Includes:
 ### Images
 
 Put your images into `images_src` folder. Then run `grunt images`.
+
+Config:
+
+```json
+tamia: {
+	imagesSrc: '',  // Optional
+	imagesDest: ''  // Optional
+}
+```
 
 Includes:
 

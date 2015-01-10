@@ -89,7 +89,7 @@ module.exports = function(grunt, config) {
 	 * @return {Boolean}
 	 */
 	util.hasScripts = _.memoize(function() {
-		return grunt.file.exists('js/main.js');
+		return grunt.file.exists(path.join(util.srcDir('scriptsSrc', 'js'), 'main.js'));
 	});
 
 	/**
@@ -98,7 +98,7 @@ module.exports = function(grunt, config) {
 	 * @return {Boolean}
 	 */
 	util.hasStyles = _.memoize(function() {
-		return grunt.file.exists('styles/index.styl');
+		return grunt.file.exists(path.join(util.srcDir('stylesSrc', 'styles'), 'index.styl'));
 	});
 
 	/**
@@ -136,11 +136,41 @@ module.exports = function(grunt, config) {
 		}
 	};
 
+	/**
+	 * Returns source path.
+	 *
+	 * @param {String} name Name in `config.tamia`.
+	 * @param {String} dir Default folder name.
+	 * @return {String}
+	 */
+	util.srcDir = function(name, dir) {
+		return config.tamia[name] || path.join(config.tamia.src, dir);
+	};
+
+	/**
+	 * Returns destination path.
+	 *
+	 * @param {String} name Name in `config.tamia`.
+	 * @param {String} dir Default folder name.
+	 * @return {String}
+	 */
+	util.destDir = function(name, dir) {
+		return config.tamia[name] || path.join(config.tamia.dest, dir);
+	};
+
 	function npmModulePath(module) {
 		return path.join(process.cwd(), 'node_modules', module);
 	}
 
 	function main() {
+		// Default config
+		config = _.merge({
+			tamia: {
+				src: '',
+				dest: ''
+			}
+		}, config);
+
 		// Banner
 		util.requireConfig('tamia.author');
 		config.banner = '/*! Author: <%= tamia.author %>, <%= grunt.template.today("yyyy") %> */\n';
