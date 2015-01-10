@@ -1,3 +1,9 @@
+### 2015-01-10 v0.1.6
+
+* Configurable source and destination for all modules.
+* Ability to configure Stylobuild.
+* Images: add JPEG to the list of available extensions.
+
 ### 2015-01-08 v0.1.5
 
 * Scripts: source maps.
