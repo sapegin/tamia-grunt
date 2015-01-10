@@ -30,6 +30,9 @@ module.exports = function(grunt, util, config) {
 	if (debug) {
 		stylobuildConfig.cleancss = false;
 	}
+	if (config.tamia.stylobuild) {
+		_.merge(stylobuildConfig, config.tamia.stylobuild);
+	}
 
 	var localConfig = {
 		stylus: {

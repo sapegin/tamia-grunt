@@ -71,6 +71,7 @@ Config:
 tamia: {
 	stylesSrc: '',  // Optional
 	stylesDest: ''  // Optional
+	stylobuild: {}  // Stylobuild config, optional
 }
 ```
 
