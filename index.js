@@ -18,6 +18,12 @@ module.exports = function(grunt, config) {
 	var requires = {};
 	var modules;
 
+	/**
+	 * Tries to require an npm module. Asks user to install module if it cannot be required.
+	 *
+	 * @param {String} module Module name.
+	 * @return {Object}
+	 */
 	util.npmRequire = function(module) {
 		try {
 			return require(npmModulePath(module));
@@ -27,6 +33,11 @@ module.exports = function(grunt, config) {
 		}
 	};
 
+	/**
+	 * Asks user to install npm modules if they cannot be required.
+	 *
+	 * @param {Array} modules Modules names.
+	 */
 	util.npmInstall = function(modules) {
 		if (!_.isArray(modules)) modules = [modules];
 		var required = [];
@@ -42,12 +53,23 @@ module.exports = function(grunt, config) {
 		}
 	};
 
+	/**
+	 * Adds list of npm modules to requirements list.
+	 *
+	 * @param {Array} modules Modules names.
+	 */
 	util.npmDependencies = function(modules) {
 		modules.forEach(function(module) {
 			requires[module] = true;
 		});
 	};
 
+	/**
+	 * Checks existence of a value in config.
+	 *
+	 * @param {String} configPath Path (eg. `tamia.author`).
+	 * @return {Boolean}
+	 */
 	util.requireConfig = function(configPath) {
 		var parts = configPath.split('.');
 		var current = config;
