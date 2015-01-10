@@ -51,7 +51,7 @@ module.exports = function(grunt) {
 
 Config:
 
-```json
+```js
 tamia: {
 	author: 'Artem Sapegin, http://sapegin.me',  // Required
 	src: '',  // Optional
@@ -67,7 +67,7 @@ Put your Stylus files into `styles` folder. `styles/index.styl` should exists. T
 
 Config:
 
-```json
+```js
 tamia: {
 	stylesSrc: '',  // Optional
 	stylesDest: ''  // Optional
@@ -88,7 +88,7 @@ Don’t forget to add `.jshintrc` to enable JSHint.
 
 Config:
 
-```json
+```js
 tamia: {
 	scriptsSrc: '',  // Optional
 	scriptsDest: ''  // Optional
@@ -108,7 +108,7 @@ Put your images into `images_src` folder. Then run `grunt images`.
 
 Config:
 
-```json
+```js
 tamia: {
 	imagesSrc: '',  // Optional
 	imagesDest: ''  // Optional
