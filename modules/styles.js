@@ -66,10 +66,7 @@ module.exports = function(grunt, util, config) {
 			}
 		}
 	};
-
-	var isWordpressTheme = grunt.file.exists('header.php') && grunt.file.exists('functions.php');
-	var dest = isWordpressTheme ? 'styles.css' : path.join(destDir, 'styles.css');
-	localConfig.stylus.compile.files[dest] = path.join(srcDir, 'index.styl');
+	localConfig.stylus.compile.files[path.join(destDir, 'styles.css')] = path.join(srcDir, 'index.styl');
 
 	config = _.merge(localConfig, config);
 
