@@ -243,7 +243,8 @@ module.exports = function(grunt, config) {
 							livereload: true
 						},
 						files: [
-							'build/**/*'
+							// @todo scriptsDest, stylesDest support
+							path.join(config.tamia.dest, 'build/**/*')
 						]
 					}
 				}
