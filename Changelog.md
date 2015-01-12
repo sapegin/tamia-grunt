@@ -1,3 +1,8 @@
+### 2015-01-12 v0.1.8
+
+* Styles: really fix Tamia custom path.
+* Better debug (`grunt --verbose`) output.
+
 ### 2015-01-12 v0.1.7
 
 * Styles: fix custom path for Tamia.
