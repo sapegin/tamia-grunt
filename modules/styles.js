@@ -50,7 +50,7 @@ module.exports = function(grunt, util, config) {
 					DEBUG: debug
 				},
 				paths: [
-					util.src('tamia')
+					util.srcDir('tamiaSrc', 'tamia')
 				],
 				use: [
 					function() {

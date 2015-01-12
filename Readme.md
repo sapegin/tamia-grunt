@@ -55,7 +55,8 @@ Config:
 tamia: {
 	author: 'Artem Sapegin, http://sapegin.me',  // Required
 	src: '',  // Optional
-	dest: ''  // Optional
+	dest: '',  // Optional
+	tamiaSrc: ''  // Optional
 }
 ```
 
