@@ -17,6 +17,8 @@ module.exports = function(grunt, config) {
 
 	var util = {};
 	var requires = {};
+	var moduleDirs = {};
+	var moduleName;
 	var modules;
 
 	/**
@@ -138,25 +140,51 @@ module.exports = function(grunt, config) {
 	};
 
 	/**
+	 * Prints a message that current module was skipped (in verbose mode).
+	 */
+	util.skipModule = function() {
+		grunt.verbose.writeln('tamia-grunt: ' + moduleName + ': skipped.');
+	};
+
+	/**
+	 * Configures source and destination pathes for a current module.
+	 *
+	 * @param {Object} params Params.
+	 * @param {String} params.srcParam Name in `config.tamia` (source).
+	 * @param {String} params.srcDir Default folder name (source).
+	 * @param {String} params.destParam Name in `config.tamia` (destination).
+	 * @param {String} params.destDir Default folder name (destination).
+	 * @return {Object}
+	 */
+	util.setupDirs = function(params) {
+		moduleDirs = {
+			src: params.srcParam ? (config.tamia[params.srcParam] || path.join(config.tamia.src, params.srcDir)) : '',
+			dest: params.destParam ? (config.tamia[params.destParam] || path.join(config.tamia.dest, params.destDir)) : '',
+		};
+
+		grunt.verbose.writeln('tamia-grunt: ' + moduleName + ': ' + (moduleDirs.src || '.') + ' → ' + (moduleDirs.dest || '.') + '.');
+
+		return moduleDirs;
+	};
+
+	/**
 	 * Returns source path.
 	 *
-	 * @param {String} name Name in `config.tamia`.
-	 * @param {String} dir Default folder name.
+	 * @param {String} mask Path/mask to append to source path.
 	 * @return {String}
 	 */
-	util.srcDir = function(name, dir) {
-		return config.tamia[name] || path.join(config.tamia.src, dir);
+	util.src = function(mask) {
+		return path.join(moduleDirs.src, mask);
 	};
 
 	/**
 	 * Returns destination path.
 	 *
-	 * @param {String} name Name in `config.tamia`.
-	 * @param {String} dir Default folder name.
+	 * @param {String} mask Path/mask to append to destination path.
 	 * @return {String}
 	 */
-	util.destDir = function(name, dir) {
-		return config.tamia[name] || path.join(config.tamia.dest, dir);
+	util.dest = function(mask) {
+		return path.join(moduleDirs.dest, mask);
 	};
 
 	function npmModulePath(module) {
@@ -177,8 +205,10 @@ module.exports = function(grunt, config) {
 		config.banner = '/*! Author: <%= tamia.author %>, <%= grunt.template.today("yyyy") %> */\n';
 
 		// Modules
+		grunt.verbose.subhead('tamia-grunt: loading modules…');
 		modules = glob.sync(__dirname + '/modules/*.js');
 		modules.forEach(function(module) {
+			moduleName = path.basename(module, '.js');
 			config = require(module)(grunt, util, config);
 		});
 

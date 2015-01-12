@@ -8,13 +8,19 @@
 module.exports = function(grunt, util, config) {
 	'use strict';
 
-	var path = require('path');
 	var _ = require('lodash');
 
-	if (!util.hasStyles()) return config;
+	if (!util.hasStyles()) {
+		util.skipModule();
+		return config;
+	}
 
-	var srcDir = util.srcDir('stylesSrc', 'styles');
-	var destDir = util.destDir('stylesDest', 'build');
+	util.setupDirs({
+		srcParam: 'stylesSrc',
+		srcDir: 'styles',
+		destParam: 'stylesDest',
+		destDir: 'build'
+	});
 
 	var stylobuild = util.npmRequire('stylobuild');
 
@@ -44,7 +50,7 @@ module.exports = function(grunt, util, config) {
 					DEBUG: debug
 				},
 				paths: [
-					path.join(srcDir, 'tamia')
+					util.src('tamia')
 				],
 				use: [
 					function() {
@@ -61,12 +67,12 @@ module.exports = function(grunt, util, config) {
 				options: {
 					atBegin: true
 				},
-				files: path.join(srcDir, '**/*.styl'),
+				files: util.src('**/*.styl'),
 				tasks: ['stylus']
 			}
 		}
 	};
-	localConfig.stylus.compile.files[path.join(destDir, 'styles.css')] = path.join(srcDir, 'index.styl');
+	localConfig.stylus.compile.files[util.dest('styles.css')] = util.src('index.styl');
 
 	config = _.merge(localConfig, config);
 

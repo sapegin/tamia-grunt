@@ -9,15 +9,21 @@
 module.exports = function(grunt, util, config) {
 	'use strict';
 
-	var path = require('path');
 	var _ = require('lodash');
 
-	if (!util.hasScripts()) return config;
+	if (!util.hasScripts()) {
+		util.skipModule();
+		return config;
+	}
 
 	util.requireConfig('concat');
 
-	var srcDir = util.srcDir('scriptsSrc', 'js');
-	var destDir = util.destDir('scriptsDest', 'build');
+	util.setupDirs({
+		srcParam: 'scriptsSrc',
+		srcDir: 'js',
+		destParam: 'scriptsDest',
+		destDir: 'build'
+	});
 
 	var debug = !!grunt.option('debug');
 
@@ -32,8 +38,8 @@ module.exports = function(grunt, util, config) {
 				jshintrc: true
 			},
 			files: [
-				path.join(srcDir, '*.js'),
-				path.join(srcDir, 'components/*.js')
+				util.src('*.js'),
+				util.src('components/*.js')
 			]
 		},
 		uglify: {
@@ -75,7 +81,7 @@ module.exports = function(grunt, util, config) {
 	if (grunt.file.exists('bower.json')) {
 		localConfig.bower_concat = {
 			main: {
-				dest: path.join(destDir, '_bower.js'),
+				dest: util.dest('_bower.js'),
 				exclude: [
 					'jquery',
 					'modernizr'
