@@ -1,3 +1,8 @@
+### 2015-01-12 v0.1.7
+
+* Styles: fix custom path for Tamia.
+* Styles: remove Wordpress detection. Use stylesDest instead.
+
 ### 2015-01-10 v0.1.6
 
 * Configurable source and destination for all modules.
