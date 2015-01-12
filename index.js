@@ -147,6 +147,28 @@ module.exports = function(grunt, config) {
 	};
 
 	/**
+	 * Returns source directory.
+	 *
+	 * @param {String} name Name in `config.tamia`.
+	 * @param {String} dir Default folder name.
+	 * @return {String}
+	 */
+	util.srcDir = function(name, dir) {
+		return config.tamia[name] || path.join(config.tamia.src, dir);
+	};
+
+	/**
+	 * Returns destination directory.
+	 *
+	 * @param {String} name Name in `config.tamia`.
+	 * @param {String} dir Default folder name.
+	 * @return {String}
+	 */
+	util.destDir = function(name, dir) {
+		return config.tamia[name] || path.join(config.tamia.dest, dir);
+	};
+
+	/**
 	 * Configures source and destination pathes for a current module.
 	 *
 	 * @param {Object} params Params.
@@ -158,8 +180,8 @@ module.exports = function(grunt, config) {
 	 */
 	util.setupDirs = function(params) {
 		moduleDirs = {
-			src: params.srcParam ? (config.tamia[params.srcParam] || path.join(config.tamia.src, params.srcDir)) : '',
-			dest: params.destParam ? (config.tamia[params.destParam] || path.join(config.tamia.dest, params.destDir)) : '',
+			src: params.srcParam ? util.srcDir(params.srcParam, params.srcDir) : '',
+			dest: params.destParam ? util.destDir(params.destParam, params.destDir) : '',
 		};
 
 		grunt.verbose.writeln('tamia-grunt: ' + moduleName + ': ' + (moduleDirs.src || '.') + ' → ' + (moduleDirs.dest || '.') + '.');
