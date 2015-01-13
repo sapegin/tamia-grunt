@@ -28,7 +28,7 @@ module.exports = function(grunt, util, config) {
 
 	var stylobuildConfig = {
 		autoprefixer: {
-			browsers: 'last 2 versions, ie 8, ie 9'
+			browsers: 'last 2 versions, ie 9'
 		},
 		minifier: 'cleancss',
 		pixrem: false
