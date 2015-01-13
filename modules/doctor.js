@@ -27,6 +27,7 @@ module.exports = function(grunt, util, config) {
 	var _ = require('lodash');
 	var chalk = require('chalk');
 	var compareVersion = require('compare-version');
+	var copy = require('copy-paste').copy;
 
 	var allOk = true;
 
@@ -48,6 +49,7 @@ module.exports = function(grunt, util, config) {
 		grunt.log.subhead('Checking npm dependencies...');
 		var packageDir = path.dirname(packageJsonPath);
 		var devDependencies = readPackageJson().devDependencies;
+		var obsolete = [];
 		_.each(requirements, function(version, name) {
 			if (!devDependencies[name]) return;
 			var printName = chalk.white(name);
@@ -58,8 +60,15 @@ module.exports = function(grunt, util, config) {
 			}
 			else {
 				notOk(printName + ' ' + version + ' is required, installed ' + installedVersion);
+				obsolete.push(name);
 			}
 		});
+
+		if (obsolete.length) {
+			var cmd = 'npm i -D ' + obsolete.join(' ');
+			copy(cmd);
+			grunt.fail.fatal('Please update these npm packages (command copied to your clipboard):\n\n' + cmd);
+		}
 
 		if (!allOk) {
 			grunt.log.writeln();
