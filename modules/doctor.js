@@ -67,7 +67,7 @@ module.exports = function(grunt, util, config) {
 		if (obsolete.length) {
 			var cmd = 'npm i -D ' + obsolete.join(' ');
 			copy(cmd);
-			grunt.fail.fatal('Please update these npm packages (command copied to your clipboard):\n\n' + cmd);
+			grunt.log.writeln('Please update these npm packages (command copied to your clipboard):\n\n' + cmd);
 		}
 
 		if (!allOk) {
