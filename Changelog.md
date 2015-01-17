@@ -2,6 +2,7 @@
 
 * Styles: remove IE8 from Autoprefixer config.
 * Modernizr: remove html5shiv, sorry IE8.
+* Modernizr: check JS only inside `js` and `tamia` folders to decrease number of unnecessary tests in build.
 
 ### 2015-01-12 v0.1.8
 
