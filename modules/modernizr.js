@@ -38,7 +38,10 @@ module.exports = function(grunt, util, config) {
 
 	var src = localConfig.modernizr.main.files.src;
 	if (util.hasScripts()) {
-		src.push(util.dest('scripts.js'));
+		src.push(
+			util.src('js/**/*.js'),
+			util.src('tamia/**/*.js')
+		);
 	}
 	if (util.hasStyles()) {
 		src.push(util.dest('styles.css'));

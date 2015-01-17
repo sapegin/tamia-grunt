@@ -1,5 +1,6 @@
 ;(function($) {
 	'use strict';
-
-	alert('Hello world!');
+	if (Modernizr.history) {
+		alert('Hello world!');
+	}
 }(jQuery));
