@@ -1,3 +1,8 @@
+### 2015-01-17 v0.2.0
+
+* Styles: remove IE8 from Autoprefixer config.
+* Modernizr: remove html5shiv, sorry IE8.
+
 ### 2015-01-12 v0.1.8
 
 * Styles: really fix Tamia custom path.
