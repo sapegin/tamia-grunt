@@ -26,7 +26,8 @@ module.exports = function(grunt, util, config) {
 				devFile: 'remote',
 				outputFile: util.dest('modernizr.js'),
 				extra: {
-					load: false
+					load: false,
+					shiv: false
 				},
 				files: {
 					src: []
