@@ -75,6 +75,13 @@ module.exports = function(grunt, util, config) {
 				},
 				files: '<%= concat.main.src %>',
 				tasks: ['concat']
+			},
+			inlines: {
+				options: {
+					atBegin: true
+				},
+				files: util.src('inlines/*.js'),
+				tasks: ['uglify:inlines']
 			}
 		}
 	};
