@@ -38,8 +38,7 @@ module.exports = function(grunt, util, config) {
 				jshintrc: true
 			},
 			files: [
-				util.src('*.js'),
-				util.src('components/*.js')
+				util.src('**/*.js')
 			]
 		},
 		uglify: {
