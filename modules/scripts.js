@@ -57,6 +57,16 @@ module.exports = function(grunt, util, config) {
 				files: {
 					'<%= concat.main.dest %>': '<%= concat.main.dest %>'
 				}
+			},
+			inlines: {
+				files: [
+					{
+						expand: true,
+						cwd: util.src('inlines'),
+						src: '*.js',
+						dest: util.dest('inlines')
+					}
+				]
 			}
 		},
 		watch: {
