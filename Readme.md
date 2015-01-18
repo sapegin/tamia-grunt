@@ -32,6 +32,7 @@ module.exports = function(grunt) {
 				nonull: true,
 				src: [
 					'<%= bower_concat.main.dest %>',
+					'<%= modernizr.main.outputFile %>',
 					'tamia/vendor/*.js',
 					'tamia/tamia/tamia.js',
 					'tamia/tamia/component.js',
@@ -56,7 +57,9 @@ tamia: {
 	author: 'Artem Sapegin, http://sapegin.me',  // Required
 	src: '',  // Optional
 	dest: '',  // Optional
-	tamiaSrc: ''  // Optional
+	tamiaSrc: '',  // Optional
+	modernizr: false,  // Optional: disable Modernizr
+	stylobuild: {}  // Optional: Stylobuild options
 }
 ```
 

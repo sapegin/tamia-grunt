@@ -10,7 +10,7 @@ module.exports = function(grunt, util, config) {
 
 	var _ = require('lodash');
 
-	if (!util.hasScripts() && !util.hasStyles()) {
+	if ((!util.hasScripts() && !util.hasStyles()) || config.tamia.modernizr === false) {
 		util.skipModule();
 		return config;
 	}

@@ -112,10 +112,10 @@ module.exports = function(grunt, config) {
 	 */
 	var modernizrAdded = false;
 	util.appendModernizr = function(tasks) {
-		if (!modernizrAdded) {
-			tasks.push('modernizr');
-			modernizrAdded = true;
-		}
+		if (modernizrAdded || config.tamia.modernizr === false) return tasks;
+
+		tasks.push('modernizr');
+		modernizrAdded = true;
 		return tasks;
 	};
 
