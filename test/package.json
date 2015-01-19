@@ -13,6 +13,6 @@
     "grunt-modernizr": "~0.5.2",
     "grunt-newer": "~0.8.0",
     "grunt-svgmin": "~2.0.0",
-    "stylobuild": "~0.6.0"
+    "stylobuild": "~0.7.0"
   }
 }

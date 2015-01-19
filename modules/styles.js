@@ -34,7 +34,7 @@ module.exports = function(grunt, util, config) {
 		pixrem: false
 	};
 	if (debug) {
-		stylobuildConfig.cleancss = false;
+		stylobuildConfig.minifier = false;
 	}
 	if (config.tamia.stylobuild) {
 		_.merge(stylobuildConfig, config.tamia.stylobuild);
