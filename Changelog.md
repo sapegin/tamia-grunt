@@ -1,3 +1,11 @@
+### 2015-01-20 v0.3.0
+
+* Images: grunt-svgmin not needed anymore; grunt-contrib-imagemin now supports SVG.
+* Scripts: JSHint should check all JS files in `js` foler.
+* Scripts: uglify inlines (JS files in `js/inlines` folder).
+* Modernizr: ability to disable Modernizr.
+* Update stylobuild and other deps: Autoprefixer 4.0 and css-clean 3.0.
+
 ### 2015-01-17 v0.2.0
 
 * Styles: remove IE8 from Autoprefixer config.
