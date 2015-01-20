@@ -18,35 +18,17 @@ module.exports = function(grunt, util, config) {
 		destDir: 'images'
 	});
 
-	var imagesExts = 'png,jpg,jpeg,gif';
-	var svgExts = 'svg';
+	var imagesExts = 'png,jpg,jpeg,gif,svg';
 
-	var images = !!glob.sync(util.globMask(imagesExts, dirs.src)).length;
-	var svgs = !!glob.sync(util.globMask(svgExts, dirs.src)).length;
-
-	if (!images && !svgs) {
+	var imagesGlob = util.globMask(imagesExts, dirs.src);
+	var images = !!glob.sync(imagesGlob).length;
+	if (!images) {
 		util.skipModule();
 		return config;
 	}
 
 	var localConfig = {
-		watch: {
-			images: {
-				options: {
-					atBegin: true
-				},
-				files: util.globMask(imagesExts + svgExts, dirs.src),
-				tasks: ['images']
-			}
-		}
-	};
-	var deps = ['grunt-newer'];
-	var tasks = [];
-
-	if (images) {
-		deps.push('grunt-contrib-imagemin');
-		tasks.push('newer:imagemin');
-		localConfig.imagemin = {
+		imagemin: {
 			options: {
 				pngquant: true
 			},
@@ -60,31 +42,26 @@ module.exports = function(grunt, util, config) {
 					}
 				]
 			}
-		};
-	}
-
-	if (svgs) {
-		deps.push('grunt-svgmin');
-		tasks.push('newer:svgmin');
-		localConfig.svgmin = {
+		},
+		watch: {
 			images: {
-				files: [
-					{
-						expand: true,
-						cwd: dirs.src,
-						src: util.globMask(svgExts),
-						dest: dirs.dest
-					}
-				]
+				options: {
+					atBegin: true
+				},
+				files: imagesGlob,
+				tasks: ['images']
 			}
-		};
-	}
+		}
+	};
 
 	config = _.merge(localConfig, config);
 
-	util.npmDependencies(deps);
+	util.npmDependencies([
+		'grunt-newer',
+		'grunt-contrib-imagemin'
+	]);
 
-	grunt.registerTask('images', tasks);
+	grunt.registerTask('images', ['newer:imagemin']);
 
 	return config;
 };
