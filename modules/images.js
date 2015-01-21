@@ -20,7 +20,7 @@ module.exports = function(grunt, util, config) {
 
 	var imagesExts = 'png,jpg,jpeg,gif,svg';
 
-	var imagesGlob = util.globMask(imagesExts, dirs.src);
+	var imagesGlob = util.globMask(imagesExts, dirs.src + '/**');
 	var images = !!glob.sync(imagesGlob).length;
 	if (!images) {
 		util.skipModule();
@@ -37,7 +37,7 @@ module.exports = function(grunt, util, config) {
 					{
 						expand: true,
 						cwd: dirs.src,
-						src: util.globMask(imagesExts),
+						src: '**/' + util.globMask(imagesExts),
 						dest: dirs.dest
 					}
 				]
