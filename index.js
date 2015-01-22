@@ -50,9 +50,30 @@ module.exports = function(grunt, config) {
 			}
 		});
 		if (required.length) {
-			var cmd = 'npm i -D ' + required.join(' ');
-			copy(cmd);
-			grunt.fail.fatal('Please install npm packages (command copied to your clipboard):\n\n' + cmd);
+			util.npmPlease('install', required, true);
+		}
+	};
+
+	/**
+	 * Asks to install/update/remove given list of npm modules. Copies shell command to the clipboard.
+	 *
+	 * @param {String} what Action: install/update/remove.
+	 * @param {Array} modules Modules names.
+	 */
+	util.npmPlease = function(what, modules, fatal) {
+		var keys = {
+			install: 'i',
+			update: 'i',
+			remove: 'r'
+		};
+		var cmd = 'npm ' + keys[what] + ' -D ' + modules.join(' ');
+		copy(cmd);
+		var message = 'Please ' + what + ' these npm packages (command copied to your clipboard):\n\n' + cmd;
+		if (fatal) {
+			grunt.fail.fatal(message);
+		}
+		else {
+			grunt.log.writeln(message);
 		}
 	};
 

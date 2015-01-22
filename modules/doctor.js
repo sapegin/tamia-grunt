@@ -20,13 +20,15 @@ module.exports = function(grunt, util, config) {
 		'grunt-bower-concat': '0.4.0',
 		'stylobuild': '0.7.0',  // minifier: false
 	};
+	var superfluous = [
+		'grunt-svgmin'
+	];
 
 	var fs = require('fs');
 	var path = require('path');
 	var _ = require('lodash');
 	var chalk = require('chalk');
 	var compareVersion = require('compare-version');
-	var copy = require('copy-paste').copy;
 
 	var allOk = true;
 
@@ -45,9 +47,10 @@ module.exports = function(grunt, util, config) {
 			notOk('package.json not found');
 		}
 
-		grunt.log.subhead('Checking npm dependencies...');
 		var packageDir = path.dirname(packageJsonPath);
 		var devDependencies = readPackageJson().devDependencies;
+
+		grunt.log.subhead('Checking outdated npm dependencies...');
 		var obsolete = [];
 		_.each(requirements, function(version, name) {
 			if (!devDependencies[name]) return;
@@ -64,9 +67,19 @@ module.exports = function(grunt, util, config) {
 		});
 
 		if (obsolete.length) {
-			var cmd = 'npm i -D ' + obsolete.join(' ');
-			copy(cmd);
-			grunt.log.writeln('Please update these npm packages (command copied to your clipboard):\n\n' + cmd);
+			util.npmPlease('update', obsolete);
+		}
+
+		grunt.log.subhead('Checking superfluous npm dependencies...');
+		var toremove = _.filter(superfluous, function(name) {
+			return !!devDependencies[name];
+		});
+
+		if (toremove.length) {
+			util.npmPlease('remove', toremove);
+		}
+		else {
+			ok('no superfluous packages found');
 		}
 
 		if (!allOk) {

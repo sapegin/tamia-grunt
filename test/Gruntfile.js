@@ -16,5 +16,5 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['styles', 'scripts', 'images']);
+	grunt.registerTask('default', ['doctor', 'styles', 'scripts', 'images']);
 };
