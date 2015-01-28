@@ -22,7 +22,10 @@ module.exports = function(grunt, util, config) {
 		'stylobuild': '0.7.0',  // minifier: false
 	};
 	var superfluous = [
-		'grunt-svgmin'
+		'grunt-svgmin',
+		'csso-stylus',
+		'autoprefixer-stylus',
+		'load-grunt-tasks'
 	];
 
 	var fs = require('fs');
