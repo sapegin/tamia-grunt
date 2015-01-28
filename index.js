@@ -217,7 +217,7 @@ module.exports = function(grunt, config) {
 	 * @return {String}
 	 */
 	util.src = function(mask) {
-		return path.join(moduleDirs.src, mask);
+		return path.join(moduleDirs.src, mask || '');
 	};
 
 	/**
@@ -227,7 +227,18 @@ module.exports = function(grunt, config) {
 	 * @return {String}
 	 */
 	util.dest = function(mask) {
-		return path.join(moduleDirs.dest, mask);
+		return path.join(moduleDirs.dest, mask || '');
+	};
+
+	/**
+	 * Inserts item into an array after given item. Modifies array.
+	 *
+	 * @param {Array} array
+	 * @param {Mixed} item
+	 * @param {Mixed} newItem
+	 */
+	util.insertAfter = function(array, item, newItem) {
+		array.splice(array.indexOf(item) + 1, 0, newItem);
 	};
 
 	function npmModulePath(module) {

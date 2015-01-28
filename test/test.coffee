@@ -12,7 +12,7 @@ describe 'basic', ->
 	it 'build', (done) ->
 		expected_dir = path.join __dirname, 'expected'
 		build_dir = path.join __dirname, 'build'
-		files = glob.sync '*.*', cwd: expected_dir
+		files = glob.sync '**/*', {cwd: expected_dir, nodir: true}
 		files.forEach (file) ->
 			expected = read expected_dir, file
 			actual = read build_dir, file

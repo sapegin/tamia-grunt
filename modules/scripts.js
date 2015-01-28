@@ -11,13 +11,6 @@ module.exports = function(grunt, util, config) {
 
 	var _ = require('lodash');
 
-	if (!util.hasScripts()) {
-		util.skipModule();
-		return config;
-	}
-
-	util.requireConfig('concat');
-
 	util.setupDirs({
 		srcParam: 'scriptsSrc',
 		srcDir: 'js',
@@ -27,89 +20,138 @@ module.exports = function(grunt, util, config) {
 
 	var debug = !!grunt.option('debug');
 
-	var localConfig = {
-		concat: {
-			options: {
-				sourceMap: debug
-			}
-		},
-		jshint: {
-			options: {
-				jshintrc: true
-			},
-			files: [
-				util.src('**/*.js')
-			]
-		},
-		uglify: {
-			options: {
-				compress: {
-					global_defs: {
-						DEBUG: debug
-					}
-				}
-			},
-			main: {
+	var localConfig = {};
+	var deps = [];
+	var tasks = [];
+
+	// Any scripts
+	if (grunt.file.exists(util.src())) {
+		grunt.verbose.writeln('tamia-grunt: scripts: some scripts found...');
+		_.merge(localConfig, {
+			jshint: {
 				options: {
-					banner: '<%= banner %>'
+					jshintrc: true
 				},
-				files: {
-					'<%= concat.main.dest %>': '<%= concat.main.dest %>'
-				}
-			},
-			inlines: {
 				files: [
-					{
-						expand: true,
-						cwd: util.src('inlines'),
-						src: '*.js',
-						dest: util.dest('inlines')
-					}
+					util.src('**/*.js')
 				]
+			},
+			uglify: {
+				options: {
+					compress: {
+						global_defs: {
+							DEBUG: debug
+						}
+					}
+				}
 			}
-		},
-		watch: {
+		});
+
+		deps.push(
+			'grunt-contrib-jshint',
+			'grunt-contrib-uglify',
+			'grunt-contrib-watch'
+		);
+		tasks.push('jshint', 'uglify');
+	}
+
+	// Regular scripts: js/**/*.js
+	if (util.hasScripts()) {
+		grunt.verbose.writeln('tamia-grunt: scripts: regular scripts found.');
+		util.requireConfig('concat');
+
+		_.merge(localConfig, {
 			concat: {
 				options: {
-					atBegin: true
-				},
-				files: '<%= concat.main.src %>',
-				tasks: ['concat']
+					sourceMap: debug
+				}
 			},
-			inlines: {
-				options: {
-					atBegin: true
-				},
-				files: util.src('inlines/*.js'),
-				tasks: ['uglify:inlines']
+			uglify: {
+				main: {
+					options: {
+						banner: '<%= banner %>'
+					},
+					files: {
+						'<%= concat.main.dest %>': '<%= concat.main.dest %>'
+					}
+				}
+			},
+			watch: {
+				concat: {
+					options: {
+						atBegin: true
+					},
+					files: '<%= concat.main.src %>',
+					tasks: ['concat']
+				}
 			}
-		}
-	};
+		});
 
-	var deps = [
-		'grunt-contrib-jshint',
-		'grunt-contrib-concat',
-		'grunt-contrib-uglify'
-	];
+		deps.push('grunt-contrib-concat');
+		util.insertAfter(tasks, 'jshint', 'concat');
+	}
 
-	var tasks = ['jshint', 'concat', 'uglify'];
+	// Inlines: js/inlines/*.js
+	var inlinesSrc = util.src('inlines');
+	if (grunt.file.exists(inlinesSrc)) {
+		grunt.verbose.writeln('tamia-grunt: scripts: inline scripts found.');
+		_.merge(localConfig, {
+			uglify: {
+				inlines: {
+					files: [
+						{
+							expand: true,
+							cwd: inlinesSrc,
+							src: '*.js',
+							dest: util.dest('inlines')
+						}
+					]
+				}
+			},
+			watch: {
+				inlines: {
+					options: {
+						atBegin: true
+					},
+					files: inlinesSrc,
+					tasks: ['uglify:inlines']
+				}
+			}
+		});
+	}
 
+	// Bower components
 	if (grunt.file.exists('bower.json')) {
-		localConfig.bower_concat = {
-			main: {
-				dest: util.dest('_bower.js'),
-				exclude: [
-					'jquery',
-					'modernizr'
-				]
+		grunt.verbose.writeln('tamia-grunt: scripts: Bower components found.');
+		_.merge(localConfig, {
+			bower_concat: {
+				main: {
+					dest: util.dest('_bower.js'),
+					exclude: [
+						'jquery',
+						'modernizr'
+					]
+				}
+			},
+			watch: {
+				bower: {
+					options: {
+						atBegin: true
+					},
+					files: 'bower.json',
+					tasks: ['bower_concat', 'concat']
+				}
 			}
-		};
-		localConfig.watch.bower = {
-			files: 'bower.json',
-			tasks: ['bower_concat', 'concat']
-		};
+		});
+
 		deps.push('grunt-bower-concat');
-		tasks.splice(tasks.indexOf('jshint') + 1, 0, 'bower_concat');
+		util.insertAfter(tasks, 'jshint', 'bower_concat');
+	}
+
+
+	if (!tasks.length) {
+		util.skipModule();
+		return config;
 	}
 
 	config = _.merge(localConfig, config);
