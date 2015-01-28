@@ -77,7 +77,8 @@ module.exports = function(grunt, util, config) {
 	config = _.merge(localConfig, config);
 
 	util.npmDependencies([
-		'grunt-contrib-stylus'
+		'grunt-contrib-stylus',
+		'grunt-contrib-watch'
 	]);
 
 	var tasks = ['stylus'];

@@ -58,7 +58,8 @@ module.exports = function(grunt, util, config) {
 
 	util.npmDependencies([
 		'grunt-newer',
-		'grunt-contrib-imagemin'
+		'grunt-contrib-imagemin',
+		'grunt-contrib-watch'
 	]);
 
 	grunt.registerTask('images', ['newer:imagemin']);

@@ -15,6 +15,7 @@ module.exports = function(grunt, util, config) {
 		'grunt-contrib-jshint': '0.10.0',
 		'grunt-contrib-stylus': '0.20.0',  // Stylus 0.49
 		'grunt-contrib-uglify': '0.7.0',
+		'grunt-contrib-watch': '0.6.0',
 		'grunt-modernizr': '0.6.0',
 		'grunt-newer': '1.1.0',
 		'grunt-bower-concat': '0.4.0',
