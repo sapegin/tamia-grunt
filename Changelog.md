@@ -1,3 +1,9 @@
+### 2015-01-28 v0.3.1
+
+* Scripts: check every type of scripts (regular, inlines, bower) separately.
+* Images: optimize images in nested folders.
+* Doctor: check superfluous npm dependencies.
+
 ### 2015-01-20 v0.3.0
 
 * Images: grunt-svgmin not needed anymore; grunt-contrib-imagemin now supports SVG.
