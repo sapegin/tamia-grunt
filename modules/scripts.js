@@ -11,6 +11,14 @@ module.exports = function(grunt, util, config) {
 
 	var _ = require('lodash');
 
+	function has(check, paramName) {
+		var param = config[paramName];
+		if (param !== undefined) {
+			return param;
+		}
+		return check();
+	}
+
 	util.setupDirs({
 		srcParam: 'scriptsSrc',
 		srcDir: 'js',
@@ -25,7 +33,7 @@ module.exports = function(grunt, util, config) {
 	var tasks = [];
 
 	// Any scripts
-	if (grunt.file.exists(util.src())) {
+	if (util.hasScripts()) {
 		grunt.verbose.writeln('tamia-grunt: scripts: some scripts found...');
 		_.merge(localConfig, {
 			jshint: {
@@ -56,7 +64,7 @@ module.exports = function(grunt, util, config) {
 	}
 
 	// Regular scripts: js/**/*.js
-	if (util.hasScripts()) {
+	if (has(function() { return grunt.file.exists(util.src('main.js')); }, 'scripts')) {
 		grunt.verbose.writeln('tamia-grunt: scripts: regular scripts found.');
 		util.requireConfig('concat');
 
@@ -93,7 +101,7 @@ module.exports = function(grunt, util, config) {
 
 	// Inlines: js/inlines/*.js
 	var inlinesSrc = util.src('inlines');
-	if (grunt.file.exists(inlinesSrc)) {
+	if (has(function() { return grunt.file.exists(inlinesSrc); }, 'inlines')) {
 		grunt.verbose.writeln('tamia-grunt: scripts: inline scripts found.');
 		_.merge(localConfig, {
 			uglify: {
@@ -121,7 +129,7 @@ module.exports = function(grunt, util, config) {
 	}
 
 	// Bower components
-	if (grunt.file.exists('bower.json')) {
+	if (has(function() { return grunt.file.exists('bower.json'); }, 'bower')) {
 		grunt.verbose.writeln('tamia-grunt: scripts: Bower components found.');
 		_.merge(localConfig, {
 			bower_concat: {

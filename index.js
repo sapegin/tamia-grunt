@@ -113,7 +113,7 @@ module.exports = function(grunt, config) {
 	 * @return {Boolean}
 	 */
 	util.hasScripts = _.memoize(function() {
-		return grunt.file.exists(path.join(util.srcDir('scriptsSrc', 'js'), 'main.js'));
+		return grunt.file.exists(util.srcDir('scriptsSrc', 'js'));
 	});
 
 	/**

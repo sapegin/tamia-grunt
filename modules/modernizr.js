@@ -30,7 +30,9 @@ module.exports = function(grunt, util, config) {
 					shiv: false
 				},
 				files: {
-					src: []
+					src: [
+						util.src('tamia/**/*.js')
+					]
 				}
 			}
 		}
@@ -38,10 +40,7 @@ module.exports = function(grunt, util, config) {
 
 	var src = localConfig.modernizr.main.files.src;
 	if (util.hasScripts()) {
-		src.push(
-			util.src('js/**/*.js'),
-			util.src('tamia/**/*.js')
-		);
+		src.push(util.src('js/**/*.js'));
 	}
 	if (util.hasStyles()) {
 		src.push(util.dest('styles.css'));

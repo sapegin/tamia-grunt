@@ -86,16 +86,25 @@ Includes:
 
 ### Scripts
 
-Put your JavaScript files into `js` folder. `js/main.js` should exists. Add `concat` section to your Gruntfile as in an example above. Then run `grunt scripts`.
+There are three types of scripts:
+
+* Regular scripts: `js/**/*.js`. `js/main.js` should exists. Add `concat` section to your Gruntfile as in an example above.
+* Inlines: `js/inlines/*.js`. They will be uglifyed and put into `build/inlines` folder.
+* Bower components. They will be concatenated and into `build/_bower.js`.
 
 Don’t forget to add `.jshintrc` to enable JSHint.
+
+Run `grunt scripts`.
 
 Config:
 
 ```js
 tamia: {
 	scriptsSrc: '',  // Optional
-	scriptsDest: ''  // Optional
+	scriptsDest: '',  // Optional
+	scripts: false,  // Override auto detection of regular scripts, optional
+	inlines: true,  // Override auto detection uglifying inline scripts, optional
+	bower: false  // Override auto detection for Bower concatenation, optional
 }
 ```
 
