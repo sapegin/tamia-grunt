@@ -12,7 +12,7 @@ module.exports = function(grunt, util, config) {
 	var _ = require('lodash');
 
 	function has(check, paramName) {
-		var param = config[paramName];
+		var param = config.tamia[paramName];
 		if (param !== undefined) {
 			return param;
 		}
