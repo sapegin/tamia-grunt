@@ -1,4 +1,4 @@
-### 2015-01-30 v0.3.2
+### 2015-01-30 v0.3.3
 
 * Scripts: ability to override auto detection.
 * Modernizr: always analyze Tâmia’s JavaScripts.
