@@ -68,7 +68,7 @@ module.exports = function(grunt, config) {
 		};
 		var cmd = 'npm ' + keys[what] + ' -D ' + modules.join(' ');
 		copy(cmd);
-		var message = 'Please ' + what + ' these npm packages (command copied to your clipboard):\n\n' + cmd;
+		var message = '\nPlease ' + what + ' these npm packages (command copied to your clipboard):\n\n' + cmd;
 		if (fatal) {
 			grunt.fail.fatal(message);
 		}
