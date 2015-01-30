@@ -1,3 +1,8 @@
+### 2015-01-30 v0.3.2
+
+* Scripts: ability to override auto detection.
+* Modernizr: always analyze Tâmia’s JavaScripts.
+
 ### 2015-01-28 v0.3.1
 
 * Scripts: check every type of scripts (regular, inlines, bower) separately.
