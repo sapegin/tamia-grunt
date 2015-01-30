@@ -1,6 +1,6 @@
 # Tâmia Grunt
 
-[![Build Status](https://travis-ci.org/sapegin/tamia-grunt.png)](https://travis-ci.org/sapegin/tamia-grunt)
+[![Build Status](https://travis-ci.org/tamiadev/tamia-grunt.png)](https://travis-ci.org/tamiadev/tamia-grunt)
 
 [Tâmia](http://sapegin.github.io/tamia/) workflow for Grunt.
 
