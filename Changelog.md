@@ -1,3 +1,8 @@
+### 2015-03-09 v0.4.0
+
+* LiveReload → BrowserSync.
+* Images: update, tweak config.
+
 ### 2015-01-30 v0.3.3
 
 * Scripts: ability to override auto detection.
