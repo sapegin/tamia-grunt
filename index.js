@@ -266,21 +266,27 @@ module.exports = function(grunt, config) {
 			config = require(module)(grunt, util, config);
 		});
 
-		// Watch
+		// Watch and BrowserSync
 		if (config.watch) {
 			config = _.merge({
-				watch: {
-					livereload: {
-						options: {
-							livereload: true
+				browserSync: {
+					dev: {
+						bsFiles: {
+							src: [
+								// @todo scriptsDest, stylesDest support
+								path.join(config.tamia.dest, 'build/**/*')
+							]
 						},
-						files: [
-							// @todo scriptsDest, stylesDest support
-							path.join(config.tamia.dest, 'build/**/*')
-						]
+						options: {
+							// watchTask: true,
+							server: '.',
+							notify: false,
+							online: false
+						}
 					}
 				}
 			}, config);
+			util.npmDependencies(['grunt-browser-sync']);
 		}
 
 		// Required npm modules

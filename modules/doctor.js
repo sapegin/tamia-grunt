@@ -19,6 +19,7 @@ module.exports = function(grunt, util, config) {
 		'grunt-modernizr': '0.6.0',
 		'grunt-newer': '1.1.0',
 		'grunt-bower-concat': '0.4.0',
+		'grunt-browser-sync': '2.0.0',
 		'stylobuild': '0.7.0',  // minifier: false
 		'imagemin-pngquant': '4.0.0',
 	};
