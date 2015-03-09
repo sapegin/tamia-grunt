@@ -270,6 +270,11 @@ module.exports = function(grunt, config) {
 		if (config.watch) {
 			config = _.merge({
 				browserSync: {
+					options: {
+						// watchTask: true,
+						notify: false,
+						online: false
+					},
 					dev: {
 						bsFiles: {
 							src: [
@@ -278,10 +283,7 @@ module.exports = function(grunt, config) {
 							]
 						},
 						options: {
-							// watchTask: true,
-							server: '.',
-							notify: false,
-							online: false
+							server: '.'
 						}
 					}
 				}
