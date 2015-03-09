@@ -20,6 +20,7 @@ module.exports = function(grunt, util, config) {
 		'grunt-newer': '1.1.0',
 		'grunt-bower-concat': '0.4.0',
 		'stylobuild': '0.7.0',  // minifier: false
+		'imagemin-pngquant': '4.0.0',
 	};
 	var superfluous = [
 		'grunt-svgmin',

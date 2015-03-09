@@ -10,6 +10,7 @@ module.exports = function(grunt, util, config) {
 
 	var glob = require('glob');
 	var _ = require('lodash');
+	var pngquant = util.npmRequire('imagemin-pngquant');
 
 	var dirs = util.setupDirs({
 		srcParam: 'imagesSrc',
@@ -30,7 +31,10 @@ module.exports = function(grunt, util, config) {
 	var localConfig = {
 		imagemin: {
 			options: {
-				pngquant: true
+				// pngquant: true,
+				optimizationLevel: 5,
+				progressive: true,
+				use: [pngquant()]
 			},
 			images: {
 				files: [
