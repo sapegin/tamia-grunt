@@ -271,7 +271,7 @@ module.exports = function(grunt, config) {
 			config = _.merge({
 				browserSync: {
 					options: {
-						// watchTask: true,
+						watchTask: true,  // Run grunt watch with BrowserSync
 						notify: false,
 						online: false
 					},
