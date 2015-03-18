@@ -42,18 +42,18 @@
     "chalk": "~1.0.0",
     "compare-version": "~0.1.2",
     "copy-paste": "~1.0.2",
-    "glob": "~5.0.1",
+    "glob": "~5.0.3",
     "load-grunt-tasks": "~3.1.0",
-    "lodash": "~3.4.0",
+    "lodash": "~3.5.0",
     "prettyjson": "~1.1.0"
   },
   "devDependencies": {
-    "chai": "~2.1.1",
+    "chai": "~2.1.2",
     "coffee-script": "~1.9.1",
     "jscs": "~1.11.3",
     "jshint": "~2.6.3",
     "jshint-stylish": "~1.0.1",
-    "mocha": "~2.2.0"
+    "mocha": "~2.2.1"
   },
   "keywords": [
     "tamia"
