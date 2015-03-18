@@ -1,3 +1,8 @@
+### 2015-03-18 v0.4.1
+
+* Fix grunt watch and browserSync: they can work together.
+* BrowserSync: options for all subtasks.
+
 ### 2015-03-09 v0.4.0
 
 * LiveReload → BrowserSync.
