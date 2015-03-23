@@ -11,7 +11,7 @@ module.exports = function(grunt, config) {
 	var glob = require('glob');
 	var _ = require('lodash');
 	var prettyjson = require('prettyjson');
-	var copy = require('copy-paste').copy;
+	var childProcess = require('child_process');
 
 	require('load-grunt-tasks')(grunt);
 
@@ -67,14 +67,7 @@ module.exports = function(grunt, config) {
 			remove: 'r'
 		};
 		var cmd = 'npm ' + keys[what] + ' -D ' + modules.join(' ');
-		copy(cmd);
-		var message = '\nPlease ' + what + ' these npm packages (command copied to your clipboard):\n\n' + cmd;
-		if (fatal) {
-			grunt.fail.fatal(message);
-		}
-		else {
-			grunt.log.writeln(message);
-		}
+		util.copyCommand(cmd, 'Please ' + what + ' these npm packages', fatal);
 	};
 
 	/**
@@ -239,6 +232,21 @@ module.exports = function(grunt, config) {
 	 */
 	util.insertAfter = function(array, item, newItem) {
 		array.splice(array.indexOf(item) + 1, 0, newItem);
+	};
+
+	util.copyCommand = function(command, message, fatal) {
+		var copied = '';
+		if (process.platform === 'darwin' && childProcess.execSync) {
+			childProcess.execSync('echo "' + command + '" | pbcopy');
+			copied = ' (command copied to your clipboard)';
+		}
+		message = '\n' + message + copied + ':\n\n' + command;
+		if (fatal) {
+			grunt.fail.fatal(message);
+		}
+		else {
+			grunt.log.writeln(message);
+		}
 	};
 
 	function npmModulePath(module) {
