@@ -1,3 +1,7 @@
+### 2015-03-23 v0.4.2
+
+* Do not depend on copy-paste npm module.
+
 ### 2015-03-18 v0.4.1
 
 * Fix grunt watch and browserSync: they can work together.
