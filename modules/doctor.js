@@ -11,15 +11,15 @@ module.exports = function(grunt, util, config) {
 	var requirements = {
 		'grunt': '0.4.0',
 		'grunt-contrib-concat': '0.5.0',  // Source maps support
-		'grunt-contrib-imagemin': '0.9.0',
-		'grunt-contrib-jshint': '0.10.0',
-		'grunt-contrib-stylus': '0.20.0',  // Stylus 0.49
+		'grunt-contrib-imagemin': '0.9.3',  // External pngquant
+		'grunt-contrib-jshint': '0.11.0',  // JSHint 2.6.0
+		'grunt-contrib-stylus': '0.21.0',  // Stylus 0.50
 		'grunt-contrib-uglify': '0.8.1',  // screwIE8 option
 		'grunt-contrib-watch': '0.6.0',
 		'grunt-modernizr': '0.6.0',
 		'grunt-newer': '1.1.0',
-		'grunt-bower-concat': '0.4.0',
-		'grunt-browser-sync': '2.0.0',
+		'grunt-bower-concat': '0.5.0',
+		'grunt-browser-sync': '2.1.0',
 		'stylobuild': '0.7.0',  // minifier: false
 		'imagemin-pngquant': '4.0.0',
 	};
