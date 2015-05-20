@@ -147,7 +147,7 @@ module.exports = function(grunt, util, config) {
 						atBegin: true
 					},
 					files: 'bower.json',
-					tasks: ['bower_concat', 'concat']
+					tasks: ['bower_concat']
 				}
 			}
 		});
