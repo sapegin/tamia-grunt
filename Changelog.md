@@ -1,3 +1,12 @@
+### 2015-05-20 v0.5.0
+
+* Uglify: enable screwIE8 option.
+* Do not run concat task by default.
+* Do not require pngquant if there are no images.
+* stylesDestFile option.
+* Allow empty string as source or destination directory.
+* Update requirements.
+
 ### 2015-03-23 v0.4.2
 
 * Do not depend on copy-paste npm module.
