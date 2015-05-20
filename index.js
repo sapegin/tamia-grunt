@@ -168,7 +168,7 @@ module.exports = function(grunt, config) {
 	 * @return {String}
 	 */
 	util.srcDir = function(name, dir) {
-		return config.tamia[name] || path.join(config.tamia.src, dir);
+		return config.tamia[name] !== undefined ? config.tamia[name] : path.join(config.tamia.src, dir);
 	};
 
 	/**
@@ -179,7 +179,7 @@ module.exports = function(grunt, config) {
 	 * @return {String}
 	 */
 	util.destDir = function(name, dir) {
-		return config.tamia[name] || path.join(config.tamia.dest, dir);
+		return config.tamia[name] !== undefined ? config.tamia[name] : path.join(config.tamia.dest, dir);
 	};
 
 	/**
