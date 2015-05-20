@@ -14,7 +14,7 @@ module.exports = function(grunt, util, config) {
 		'grunt-contrib-imagemin': '0.9.0',
 		'grunt-contrib-jshint': '0.10.0',
 		'grunt-contrib-stylus': '0.20.0',  // Stylus 0.49
-		'grunt-contrib-uglify': '0.7.0',
+		'grunt-contrib-uglify': '0.8.1',  // screwIE8 option
 		'grunt-contrib-watch': '0.6.0',
 		'grunt-modernizr': '0.6.0',
 		'grunt-newer': '1.1.0',

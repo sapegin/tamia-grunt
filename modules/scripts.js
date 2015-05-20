@@ -46,6 +46,7 @@ module.exports = function(grunt, util, config) {
 			},
 			uglify: {
 				options: {
+					screwIE8: true,
 					compress: {
 						global_defs: {
 							DEBUG: debug
