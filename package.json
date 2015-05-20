@@ -41,18 +41,18 @@
   "dependencies": {
     "chalk": "~1.0.0",
     "compare-version": "~0.1.2",
-    "glob": "~5.0.3",
+    "glob": "~5.0.6",
     "load-grunt-tasks": "~3.1.0",
-    "lodash": "~3.5.0",
-    "prettyjson": "~1.1.0"
+    "lodash": "~3.9.1",
+    "prettyjson": "~1.1.1"
   },
   "devDependencies": {
-    "chai": "~2.1.2",
-    "coffee-script": "~1.9.1",
-    "jscs": "~1.11.3",
-    "jshint": "~2.6.3",
-    "jshint-stylish": "~1.0.1",
-    "mocha": "~2.2.1"
+    "chai": "~2.3.0",
+    "coffee-script": "~1.9.2",
+    "jscs": "~1.13.1",
+    "jshint": "~2.7.0",
+    "jshint-stylish": "~1.0.2",
+    "mocha": "~2.2.5"
   },
   "keywords": [
     "tamia"
