@@ -74,7 +74,8 @@ Config:
 ```js
 tamia: {
 	stylesSrc: '',  // Optional
-	stylesDest: ''  // Optional
+	stylesDest: ''  // Optional: destination folder
+	stylesDestFile: ''  // Optional: destination file
 	stylobuild: {}  // Stylobuild config, optional
 }
 ```

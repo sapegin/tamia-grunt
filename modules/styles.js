@@ -72,7 +72,8 @@ module.exports = function(grunt, util, config) {
 			}
 		}
 	};
-	localConfig.stylus.compile.files[util.dest('styles.css')] = util.src('index.styl');
+	var filename = config.tamia.stylesDestFile || 'styles.css';
+	localConfig.stylus.compile.files[util.dest(filename)] = util.src('index.styl');
 
 	config = _.merge(localConfig, config);
 

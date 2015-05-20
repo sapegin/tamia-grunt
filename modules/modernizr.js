@@ -43,7 +43,12 @@ module.exports = function(grunt, util, config) {
 		src.push(util.src('js/**/*.js'));
 	}
 	if (util.hasStyles()) {
-		src.push(util.dest('styles.css'));
+		util.setupDirs({
+			destParam: 'stylesDest',
+			destDir: 'build'
+		});
+		var filename = config.tamia.stylesDestFile || 'styles.css';
+		src.push(util.dest(filename));
 	}
 
 	config = _.merge(localConfig, config);
