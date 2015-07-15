@@ -27,15 +27,19 @@ module.exports = function(grunt, util, config) {
 		return config;
 	}
 
-	var pngquant = util.npmRequire('imagemin-pngquant');
+	var pngquant;
+	var use;
+	if (config.tamia.pngquant !== false) {
+		pngquant = util.npmRequire('imagemin-pngquant');
+		use = [pngquant()];
+	}
 
 	var localConfig = {
 		imagemin: {
 			options: {
-				// pngquant: true,
 				optimizationLevel: 5,
 				progressive: true,
-				use: [pngquant()]
+				use: use
 			},
 			images: {
 				files: [

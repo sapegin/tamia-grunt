@@ -125,7 +125,8 @@ Config:
 ```js
 tamia: {
 	imagesSrc: '',  // Optional
-	imagesDest: ''  // Optional
+	imagesDest: '',  // Optional
+	pngquant: false  // Disable pngquant
 }
 ```
 
