@@ -1,3 +1,8 @@
+### 2015-07-15 v0.5.1
+
+* Make pngquant optional.
+* Modernizr: match community tests.
+
 ### 2015-05-20 v0.5.0
 
 * Uglify: enable screwIE8 option.
